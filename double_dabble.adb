@@ -1,5 +1,9 @@
 package body Double_Dabble is
 
+   use type Interfaces.Unsigned_8;
+   use type Interfaces.Unsigned_16;
+   use type Interfaces.Unsigned_32;
+
    ------------------------------------------------------------
    -- Forward Double Dabble Logic
    ------------------------------------------------------------
@@ -50,7 +54,8 @@ package body Double_Dabble is
          Carry := Bits(I); -- Shift in the current bit at the LSB
          for J in reverse Work_BCD'Range loop
             Next_Carry  := Work_BCD(J) >= 8;
-            Work_BCD(J) := (Work_BCD(J) * 2) mod 16;
+            -- BCD_Digit is a modular type (mod 16), so * 2 implicitly wraps around.
+            Work_BCD(J) := Work_BCD(J) * 2; 
             if Carry then
                Work_BCD(J) := Work_BCD(J) + 1;
             end if;
