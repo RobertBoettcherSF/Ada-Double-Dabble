@@ -122,7 +122,7 @@ begin
       BCD_Val   : constant BCD_Array := To_BCD(Orig_Bits);
       Back_Bits : constant Bit_Array := To_Binary(BCD_Val, 4);
    begin
-      Assert (BCD_Val'Length = 2 and then BCD_Val(1)=1 and BCD_Val(2)=0, "Incorrect intermediate BCD");
+      Assert (BCD_Val'Length = 2 and then BCD_Val(1) = 1 and then BCD_Val(2) = 0, "Incorrect intermediate BCD");
       Assert (Back_Bits = Orig_Bits, "Roundtrip failed");
       Put_Line("      PASS");
    end;
